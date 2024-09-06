@@ -52,7 +52,7 @@ void stack::push(int item){
     }
     // 高度<MAX_ITEMS, 新節點可以插入 top後：
     if(this->n_height < MAX_ITEMS){
-        this->top->next = current; // 這邊 n_height=1時有邏輯問題!
+        this->top->next = current;
         
         this->top = current;
     }

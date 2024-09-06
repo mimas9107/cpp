@@ -1,5 +1,5 @@
 #include <iostream>
-/* 用單向鏈結串列實作 佇裂 */
+/* 用單向鏈結串列實作 佇列 */
 using namespace std;
 class Node{
 public:
