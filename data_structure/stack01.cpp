@@ -28,7 +28,7 @@ public:
     }
 
     void push(int);
-    void pop();
+    int pop();
     void printstack();
 
 
@@ -60,15 +60,36 @@ void stack::push(int item){
     this->n_height = this->n_height + 1; 
     return;
 }
-void stack::pop(){
-    if(this->n_height == 0){
+int stack::pop(){
+    int pop_data=-1;
+    // 若堆疊高度已經為 0 或 bottom已經為空的就跳出.
+    if(this->n_height == 0 || this->bottom == NULL){
         cout << "[pop] Warning! STACK is empty!" << '\n';
-        return;
+        return pop_data;
     }
-
-
+    // 判斷若已經到最底 bottom->next為 NULL, 直接刪掉bottom指向的節點, 並把串列指標 bottom指向 NULL
+    if(this->bottom->next==NULL){
+        // return the current->data
+        pop_data = this->bottom->data;
+        delete this->bottom;
+        this->bottom=NULL;
+    }else
+    {
+        // current走到『倒數第二個』紀錄為 previous, 將 previous當作最後一個節點, 並將當下的節點刪除.
+        Node *current, *previous;
+        current = this->bottom;
+        while(current && current->next != NULL){
+            previous = current;
+            current = current->next;
+        }
+        // return the current->data
+        pop_data = current->data;
+        delete current;
+        previous->next=NULL;
+        this->top = previous;
+    }
     this->n_height = this->n_height - 1;
-    return;
+    return pop_data;
 }
 void stack::printstack(){
     if(this->n_height == 0){
@@ -93,9 +114,17 @@ void stack::printstack(){
 int main(){
     stack mystack01(10);
     
-    for(int i=1; i<11; i++){
+    for(int i=1; i<4; i++){
         mystack01.push(i);
         mystack01.printstack();
     }
+    int result;
+    result = mystack01.pop();
+    cout << "pop out= " << result << '\n';
+    result = mystack01.pop();
+    cout << "pop out= " << result << '\n';
+    result = mystack01.pop();
+    cout << "pop out= " << result << '\n';
+    mystack01.printstack();
     return 0L;
 }
