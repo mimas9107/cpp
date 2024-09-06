@@ -47,6 +47,8 @@ void stack::push(int item){
     if(this->bottom == NULL && this->n_height == 0){
         this->bottom = current;
         this->top = current;
+        this->n_height = this->n_height + 1; 
+        return;
     }
     // 高度<MAX_ITEMS, 新節點可以插入 top後：
     if(this->n_height < MAX_ITEMS){
@@ -73,16 +75,16 @@ void stack::printstack(){
         cout << "[pop] Warning! STACK is empty!" << '\n';
         return;
     }
-    // int i=0;
-    // Node *current;
-    // current = this->bottom;
+    int i=0;
+    Node *current;
+    current = this->bottom;
     cout << "bottom= " << this->bottom << ",bottom.data= " << this->bottom->data << ",bottom.next= " << this->bottom->next << '\n';
-    // while(current->next != NULL){
+    while(current != NULL){
 
-    //     cout << i << ", addr= " << &current->data << ", data= " << current->data << ", next= " << current->next << '\n';
-    //     current = current->next;
-    //     i=i+1; 
-    // }
+        cout << i << ", addr= " << &current->data << ", data= " << current->data << ", next= " << current->next << '\n';
+        current = current->next;
+        i=i+1; 
+    }
     cout << "top= " << this->top << ", top.data= " << this->top->data << ", top.next= " << this->top->next << '\n';
     cout << "STACK height= "<< this->n_height << '\n';
     return;
