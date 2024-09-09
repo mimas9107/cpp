@@ -26,18 +26,18 @@ private:
     
 public:
     BinaryTree(){
-        this->root = NULL;
+        root = NULL;
     }
 
-    void showroot();
+    Node* getroot();
     void addnode(int);
-    // void inorder(Node*);
-    // void preorder(Node*);
-    // void postorder(Node*);
+    void inorder(Node*);
+    void preorder(Node*);
+    void postorder(Node*);
 };
-void BinaryTree::showroot(){
-    cout <<"root->data= " << this->root->data << '\n';
-    return;
+Node* BinaryTree::getroot(){
+    
+    return this->root;
 }
 void BinaryTree::addnode(int item){
 
@@ -48,12 +48,12 @@ void BinaryTree::addnode(int item){
     newnode->left = NULL;
     newnode->right = NULL;
 
-    if(this->root == NULL){
-        this->root = newnode;
-        //current = this->root;
+    if(root == NULL){
+        root = newnode;
+        current = newnode;
     }else{
         //從root開始比對要插入的值.
-        current = this->root;
+        current = root;
         while(!flag){
             if(item < current->data){
                 // 往左子樹：
@@ -77,18 +77,55 @@ void BinaryTree::addnode(int item){
     }
     cout << "&= " << current << ", d= "<< current->data <<", l="<< current->left <<", r=" << current->right << '\n';
 }
+void BinaryTree::inorder(Node *ptr){
+    // 中序走訪 LDR
+    if(ptr){ // 若 ptr不為 NULL就繼續走往下走. 
+        inorder(ptr->left);            // 往L遞迴
+        cout << ptr->data << "\u2192"; //L遞迴是NULL回來根, 印根的資料
+        inorder(ptr->right);           // 往R遞迴
+    }
+}
+void BinaryTree::preorder(Node *ptr){
+    // 前序走訪 NLR
+    if(ptr){ // 若 ptr不為 NULL就繼續走往下走.
+        cout << ptr->data << "\u2192"; //印根的資料
+        preorder(ptr->left);           // 往L遞迴
+        preorder(ptr->right);          // 往R遞迴
+    }
+}
+void BinaryTree::postorder(Node *ptr){
+    // 後序走訪 LRN
+    if(ptr){
+        postorder(ptr->left);          // 往L遞迴
+        postorder(ptr->right);         // 往R遞迴
+        cout << ptr->data << "\u2192"; //印根的資料
+    }
+}
 
 
 int main(){
-
+    srand(time(NULL));
     BinaryTree mybintree;
-    for(int i=1; i<21; i++){
-        
-        mybintree.addnode(1+(rand()%100));
-        for(int j=0; j<i; j++){
-            srand(j*32768);
-        }
-    }
-    mybintree.showroot();
+    // 依序建立二元樹 {13,12,41,8,23,59,6,55,19}
+    mybintree.addnode(13);
+    mybintree.addnode(12);
+    mybintree.addnode(41);
+    mybintree.addnode(8);
+    mybintree.addnode(23);
+    mybintree.addnode(59);
+    mybintree.addnode(6);
+    mybintree.addnode(55);
+    mybintree.addnode(19);
+    
+    // Traversal : 
+    // inorder
+    mybintree.inorder(mybintree.getroot()); 
+    cout << '\n';
+    // preorder
+    mybintree.preorder(mybintree.getroot()); 
+    cout << '\n';
+    // postorder
+    mybintree.postorder(mybintree.getroot()); 
+    cout << '\n';
     return 0L;
 }
