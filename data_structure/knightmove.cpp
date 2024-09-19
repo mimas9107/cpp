@@ -19,7 +19,8 @@ int bfs(){
     if(sx == ex && sy == ey){
         return 0;
     }
-    memset(vis, false, sizeof(vis));
+    //memset(vis, false, sizeof(vis));
+    bool (*vis)[maxn] = new bool[maxn][maxn];
     queue<point> Q;
     point start,node;
     start.x = sx;
