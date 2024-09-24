@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <string>
 using namespace std;
 int main(){
 
@@ -67,6 +68,13 @@ int main(){
         cout << '\n';
     }
     
+    vector<string> st;
+    st.push_back("2");
+    st.push_back("999");
+    int cc = 21;
+    st.push_back(to_string(cc));
+    cout << st[2] << '\n';
+
     
     return 0L;
 
