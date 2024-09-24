@@ -36,6 +36,7 @@ public:
     void preorder(Node*);
     void postorder(Node*);
     void leveltraverse(Node*);
+    Node* search(Node*,int);
 };
 Node* BinaryTree::getroot(){
     
@@ -125,6 +126,18 @@ void BinaryTree::leveltraverse(Node *ptr){
     }
     return;
 }
+Node* BinaryTree::search(Node *ptr, int data){
+    while(1){
+        if(ptr == NULL){return NULL;} // 沒找到 data, 回傳 NULL.
+        if(ptr->data == data){ 
+            return ptr; // 找到 data, 回傳這個節點指標;
+        }else if(ptr->data > data){
+            ptr = ptr->left; // data比節點值小, 走左邊繼續找.
+        }else{
+            ptr = ptr->right; // data比節點值大, 走右邊繼續找.
+        }
+    }
+}
 
 int main(){
     srand(time(NULL));
@@ -153,5 +166,18 @@ int main(){
     // level 
     mybintree.leveltraverse(mybintree.getroot());
     cout << '\n';
+
+    //search data
+    int finddata{0};
+    Node *findptr{NULL};
+    cout << "=====" << '\n';
+    cout << "Please input a data to search in the tree: ";
+    cin >> finddata;
+    findptr = mybintree.search(mybintree.getroot(), finddata);
+    if( findptr != NULL){
+        cout << " There are [ " << finddata << "] in the tree!" << '\n';
+        mybintree.inorder(findptr);
+    }
+
     return 0L;
 }
