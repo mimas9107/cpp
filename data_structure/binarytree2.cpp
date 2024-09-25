@@ -84,14 +84,14 @@ void BinaryTree::inorder(Node *ptr){
     // 中序走訪 LDR
     if(ptr){ // 若 ptr不為 NULL就繼續走往下走. 
         inorder(ptr->left);            // 往L遞迴
-        cout << ptr->data << "\u2192"; //L遞迴是NULL回來根, 印根的資料
+        cout << ptr->data << "->"; //L遞迴是NULL回來根, 印根的資料
         inorder(ptr->right);           // 往R遞迴
     }
 }
 void BinaryTree::preorder(Node *ptr){
     // 前序走訪 NLR
     if(ptr){ // 若 ptr不為 NULL就繼續走往下走.
-        cout << ptr->data << "\u2192"; //印根的資料
+        cout << ptr->data << "->"; //印根的資料
         preorder(ptr->left);           // 往L遞迴
         preorder(ptr->right);          // 往R遞迴
     }
@@ -101,7 +101,7 @@ void BinaryTree::postorder(Node *ptr){
     if(ptr){
         postorder(ptr->left);          // 往L遞迴
         postorder(ptr->right);         // 往R遞迴
-        cout << ptr->data << "\u2192"; //印根的資料
+        cout << ptr->data << "->"; //印根的資料
     }
 }
 void BinaryTree::leveltraverse(Node *ptr){
@@ -116,7 +116,7 @@ void BinaryTree::leveltraverse(Node *ptr){
 
         ptr=Q.front();
         Q.pop();
-        cout<<ptr->data<< " ";
+        cout<<ptr->data<< "->";
         if(ptr->left){
             Q.push(ptr->left);
         }
@@ -177,6 +177,7 @@ int main(){
     if( findptr != NULL){
         cout << " There are [ " << finddata << "] in the tree!" << '\n';
         mybintree.inorder(findptr);
+        cout << '\n';
     }
 
     return 0L;
