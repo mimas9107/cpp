@@ -22,7 +22,7 @@ void quicksort(int *array,int size, int left, int right){
     
         do
         {
-            while(array[i] < K){
+            while(array[i] <= K){
                 i = i + 1;
             }
             
@@ -31,7 +31,7 @@ void quicksort(int *array,int size, int left, int right){
             }
             cout << "==== "; 
             cout <<"i=" << i << ", j="<< j << ", K=" << K << '\n';
-            for(int i=0; i<10; i++){
+            for(int i=0; i<5; i++){
                 // arr[i] = i;
                 cout << array[i] << ", ";
             }
@@ -40,7 +40,7 @@ void quicksort(int *array,int size, int left, int right){
             if(i < j){
                 swap(array[i], array[j]);
             }
-            for(int i=0; i<10; i++){
+            for(int i=0; i<5; i++){
                 // arr[i] = i;
                 cout << array[i] << ", ";
             }
@@ -49,8 +49,8 @@ void quicksort(int *array,int size, int left, int right){
 
         } while(i < j);
         swap(array[left], array[j]);
-        quicksort(array,10, left, j-1);
-        quicksort(array,10, j+1, right);
+        quicksort(array,5, left, j-1);
+        quicksort(array,5, j+1, right);
 
     }
     //return 0L;
@@ -59,15 +59,16 @@ void quicksort(int *array,int size, int left, int right){
 int main()
 {
     //int arr[10]={30, 24, 27, 16, 29, 33, 25, 18, 32, 35};
-    int arr[10]={10, 9, 8, 7, 6, 1, 2, 3, 5 , 4};
-    for(int i=0; i<10; i++){
+    //int arr[10]={10, 9, 8, 7, 6, 1, 2, 3, 5 , 4};
+    int arr[5] = {-5,-4,-3,-2,-1};
+    for(int i=0; i<5; i++){
         // arr[i] = i;
         cout << arr[i] << ", ";
     }
     cout << '\n';
 
-    quicksort(arr,10, 0, 9);
-    for(int i=0; i<10; i++){
+    quicksort(arr,5, 0, 4);
+    for(int i=0; i<5; i++){
         cout << arr[i] << ", ";
     }
     cout << '\n';
