@@ -5,6 +5,8 @@
 // Note that elements beyond the length of the original array are not written. 
 // Do the above modifications to the input array in place and do not return anything.
 
+// 這個 『 in place 』才是這題精神.
+
 // Example 1:
 
 // Input: arr = [1,0,2,3,0,4,5,0]
@@ -45,8 +47,7 @@ int main(){
             res.push_back(arr.at(i));
             res.push_back(arr.at(i));
             // 此時 res陣列長度應該會比原陣列長度 +1, 但不管它.
-        }
-        
+        }        
     }
     // 將 res陣列值複製到 arr中, 索引上限指到 n-1, 後面的不管它.
     for(int i = 0; i<n; i++){
@@ -56,7 +57,7 @@ int main(){
     printarray(arr);
     return 0L;
 
-
     // Time complexity: O(n)
-    // Space comlexity: O(n) => 有用到額外陣列空間處理解答
+    // Space comlexity: O(n) => 有用到額外陣列空間處理解答, 不合題目宗旨 O(1); 
+    // 
 }
