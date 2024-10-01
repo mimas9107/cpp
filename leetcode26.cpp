@@ -7,30 +7,38 @@ class Solution {
 public:
     int removeDuplicates(vector<int>& nums) {
         int n = nums.size();
-        int p1 = 0;
-        int p2 = n-1;
-        int pcurr = 0, pnext = pcurr+1; 
-        
-        for(int i=0; i<n; i++){
-            pcurr = i;
-            pnext = i+1;
-            if(pcurr < n-1 && nums.at(pcurr) == nums.at(pnext)){
-                cout << "*" << nums.at(i) << '\n';
-                i++;
+        int idx = 1;
+        if(nums.size() == 0){
+            return 0;
+        }
+        for(int i=1; i<n; i++){
+            if(nums.at(i) != nums.at(i-1)){
+                
+                nums.at(idx) = nums.at(i);
+                idx=idx+1;
             }
         }
-        return pcurr;
+        return idx;
+    }
+
+    void printout(vector<int> &nums){
+        for(vector<int>::iterator it=nums.begin(); it!=nums.end(); it++){
+            cout << *it << " ";
+        }
+        cout << '\n';
     }
 };
 
 int main(){
-
+    //vector<int> arr{1,1,2};
     vector<int> arr{0,0,1,1,1,2,2,3,3,4};
     Solution mysol;
     int result;
     result = mysol.removeDuplicates(arr);
 
     cout << "result= " << result << '\n';
+    cout << "the array= ";
+    mysol.printout(arr);
 
 
     return 0L;
